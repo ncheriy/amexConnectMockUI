@@ -127,9 +127,9 @@ function provisionInitiation() {
     request.url = `https://${host}${epass}.aexp.com/payments/digital/v1/connect/account/provision/initiation`;
     request.body = {
       workflowId: "amzn1.abc.1.wflow.partner-id.293bca8c-96f7-462c-a29a-8eb00db7a512",
-      redirectUrl: `https://amexconnectmockui.netlify.app/connect/?env=sandbox&flow=pull&partner=${partner}`,
+      redirectUrl: `https://amexconnectmockui.netlify.app/?env=sandbox&flow=pull&partner=${partner}`,
       failureUrl: "https://www.amazon.com/hp/abc/failed-provision?wid=amzn1.abc.1.wflow.partner-id.293bca8c-96f7-462c-a29a-8eb00db7a512",
-      // cancelUrl: "https://amexconnectmockui.netlify.app/pull/?env=e2",
+      cancelUrl: "https://amexconnectmockui.netlify.app/pull/?env=e2",
       linkedAccounts: [
         "REFERENCE-ID-1",
         "REFERENCE-ID-2"

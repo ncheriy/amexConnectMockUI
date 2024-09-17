@@ -69,7 +69,7 @@ function initiatePull() {
       console.log(res.data)
       if(res.next_step === 'REDIRECT_TO_MYCA_LOGIN'){
         // redirect to myca login
-        const redirectUrl='https://amex-connect-qa.americanexpress.com/paypal?code=C21AALJRWc7ocHKvXR2KwcnO6ZqtsgpSkCwYyKp1xJC1F-H9Vs8z7gAY43cPwc5pyDcl65NxtgYTtwNq5XOMgQjA33iRy4PKw&scope=scope_group_provisioning_platform';
+        const redirectUrl='https://amex-connect-qa.americanexpress.com/paypal?code=authcode1&scope=scope_group_provisioning_platform';
         window.location.href = redirectUrl
       }
     }).catch(err => console.log(err));

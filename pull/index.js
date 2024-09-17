@@ -71,7 +71,7 @@ function initiatePull() {
       }
     }).then(res => {
       console.log(res.data)
-      if(res.next_step === 'REDIRECT_TO_MYCA_LOGIN'){
+      if(res.data.next_step === 'REDIRECT_TO_MYCA_LOGIN'){
         // redirect to myca login
         const redirectUrl='https://amex-connect-qa.americanexpress.com/paypal?code=authcode1&scope=scope_group_provisioning_platform';
         window.location.href = redirectUrl

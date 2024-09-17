@@ -58,6 +58,8 @@ function initiatePull() {
       "Content-Type": "application/x-www-form-urlencoded"
   }
   if(partner === 'paypal') {
+    headers['Selected-Partner'] = 'PAYPAL';
+    headers['Source'] = 'PARTNER_WEB';
     axios({
       method: 'post',
       url: `https://dpconnectptnr${epass}.americanexpress.com/payments/digital/v1/connect/partnertoken`,

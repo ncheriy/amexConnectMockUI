@@ -50,23 +50,46 @@ window.onload = function () {
   if (authorizationCode) localStorage.setItem('authorizationCode', authorizationCode); authCode = authorizationCode;
   if (code) localStorage.setItem('code', code), bpayCode = code;
 };
+
 function initiatePull() {
   let headers = {
       "Accept-Language": "*",
       "Client-Id": "client_test",
       "Content-Type": "application/x-www-form-urlencoded"
   }
-  axios({
+  if(partner === 'paypal') {
+    axios({
       method: 'post',
-      url: `https://${host}${epass}.aexp.com/oauth2/generate_token`,
+      url: `https://dpconnectptnr${epass}.americanexpress.com/payments/digital/v1/connect/partnertoken`,
       headers,
-  }).then(res => {
+    }).then(res => {
       console.log(res.data)
       authorization = res?.data;
       localStorage.setItem('authorization', authorization);
-    getToken();
-  }).catch(err => console.log(err));
+      getToken();
+    }).catch(err => console.log(err));
+  } else {
+    axios({
+      method: 'post',
+      url: `https://${host}${epass}.aexp.com/oauth2/generate_token`,
+      headers,
+      data: {
+        auth_code: 'C21AAIKsGU0tWRXe1aPj1Gf7qIPoyypojQ2Dzu8saes7aDNrym9hOQDahJaORdkSi0b3pIj0BpriqaNHZCWAfJtG5Arp8bwFw'
+      }
+    }).then(res => {
+      console.log(res.data)
+      if(res.next_step === 'REDIRECT_TO_MYCA_LOGIN'){
+        // redirect to myca login
+        const redirectUrl='https://amex-connect-qa.americanexpress.com/paypal?code=C21AALJRWc7ocHKvXR2KwcnO6ZqtsgpSkCwYyKp1xJC1F-H9Vs8z7gAY43cPwc5pyDcl65NxtgYTtwNq5XOMgQjA33iRy4PKw&scope=scope_group_provisioning_platform';
+        window.location.href = redirectUrl
+      }
+      authorization = res?.data;
+      localStorage.setItem('authorization', authorization);
+      getToken();
+    }).catch(err => console.log(err));
+  }
 }
+
 
 function getToken() {
   if (partner === 'amazon') {

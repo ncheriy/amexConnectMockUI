@@ -67,7 +67,7 @@ function initiatePull() {
       url: `https://dpconnectptnr${epass}.americanexpress.com/payments/digital/v1/connect/partnertoken`,
       headers: paypalHeaders,
       data: {
-        auth_code: 'C21AAIKsGU0tWRXe1aPj1Gf7qIPoyypojQ2Dzu8saes7aDNrym9hOQDahJaORdkSi0b3pIj0BpriqaNHZCWAfJtG5Arp8bwFw'
+        auth_code: 'authCode1'
       }
     }).then(res => {
       console.log(res.data)
